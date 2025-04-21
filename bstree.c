@@ -268,17 +268,42 @@ BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
 }
 
 void *tree_find_min(BSTree *tree) {
+  if(!tree || !tree->root){
+    return;
+  }
+  
+  return _bst_find_min_rec(tree->root);
 }
 
 void *tree_find_max(BSTree *tree) {
+  if(!tree || !tree->root){
+    return;
+  }
+
+  return _bst_find_max_rec(tree->root);
 }
 
 Bool tree_contains(BSTree *tree, const void *elem) {
+  if(!tree || !elem || !tree->root || !tree->cmp_ele){
+    return FALSE;
+  }
+
+  return _bst_contains_rec(tree->root, elem, tree->cmp_ele);
 }
 
 Status tree_insert(BSTree *tree, const void *elem) {
+  if(!tree || !elem || !tree->root || !tree->cmp_ele){
+    return ERROR;
+  }
+
+  return _bst_insert_rec(tree->root, elem, tree->cmp_ele);
 }
 
 Status tree_remove(BSTree *tree, const void *elem) {
-  
+  if(!tree || !elem || !tree->root || !tree->cmp_ele){
+    return ERROR;
+  }
+
+  _bst_remove_rec(tree->root, elem, tree->cmp_ele);
+  return OK;
 }
