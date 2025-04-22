@@ -233,7 +233,7 @@ Bool _bst_contains_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
 
   if(cmp_elem(elem, pn->info) == 0){
     return TRUE;
-  } else if (cmp_elem(elem, pn->info) == 0){
+  } else if (cmp_elem(elem, pn->info) < 0){
     return _bst_contains_rec(pn->left, elem, cmp_elem);
   } else {
     return _bst_contains_rec(pn->right, elem, cmp_elem);

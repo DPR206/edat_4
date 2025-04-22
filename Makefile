@@ -3,9 +3,7 @@ include Makefile_ext
 ##############################################################
 CC = gcc
 CFLAGS = -g -Wall
-EJS = p4_e1 p4_e2 p4_e3
-LDFLAGS = -L.
-LDLIBS = -lqueue
+EJS = p4_e1 #p4_e2 p4_e3
 ##############################################################
 OBJECTSP4E1 = p4_e1.o bstree.o vertex.o
 OBJECTSP4E2 = p4_e2.o
@@ -15,7 +13,7 @@ OBJECTSP4E3 = p4_e3.o
 all: $(EJS) clear
 
 p4_e1: $(OBJECTSP4E1)
-	$(CC) $(CFLAGS) -o p4_e1 $(OBJECTSP4E1) $(LDFLAGS) $(LDLIBS)
+	$(CC) $(CFLAGS) -o p4_e1 $(OBJECTSP4E1)
 
 p4_e2: $(OBJECTSP4E2)
 	$(CC) $(CFLAGS) -o p4_e2 $(OBJECTSP4E2)
