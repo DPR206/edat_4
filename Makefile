@@ -21,7 +21,7 @@ p4_e2: $(OBJECTSP4E2)
 p4_e3: $(OBJECTSP4E3)
 	$(CC) $(CFLAGS) -o p4_e3 $(OBJECTSP4E3)
 
-p4_e1.o: p4_e1.c
+p4_e1.o: p4_e1.c bstree.h vertex.h
 	$(CC) $(CFLAGS) -c p4_e1.c
 
 p4_e2.o: p4_e2.c
@@ -47,15 +47,15 @@ clean:
 
 run:
 	@echo ">>>>>>>>>>Running p4_e1"
-	run_e1
+	make run_e1
 	@echo ">>>>>>>>>>Running p4_e2"
-	run_e2
+	make run_e2
 	@echo ">>>>>>>>>>Running p4_e3"
-	run_e3
+	make run_e3
 runv:
 	@echo "Running p4_e1 with valgrind"
-	valgrind --leak-check=full --track-origins=yes run_e1
+	make run_e1 VALGRIND="valgrind --leak-check=full --track-origins=yes"
 	@echo "Running p4_e2 with valgrind"
-	valgrind --leak-check=full --track-origins=yes run_e2
+	make run_e2 VALGRIND="valgrind --leak-check=full --track-origins=yes"
 	@echo "Running p4_e3 with valgrind"
-	valgrind --leak-check=full --track-origins=yes run_e3
+	make run_e3 VALGRIND="valgrind --leak-check=full --track-origins=yes"
