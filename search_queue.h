@@ -92,6 +92,17 @@ void *search_queue_getFront(const SearchQueue *q);
 void *search_queue_getBack(const SearchQueue *q);
 
 /**
+ * @brief This function is used extract the element in the back
+ * position of a SearchQueue; this element should correspond with the largest
+ * element according to the comparison function passed in search_queue_new.
+ *
+ * @param q A pointer to the SearchQueue.
+ *
+ * @return A pointer to extracted element on sucess, NULL in case of error.
+ * */
+void *search_queue_popBack(SearchQueue *q);
+
+/**
  * @brief This function returns the size of a SearchQueue. Note that the
  * function returns 0 if it is called with a NULL pointer.
  *

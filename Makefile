@@ -3,11 +3,11 @@ include Makefile_ext
 ##############################################################
 CC = gcc
 CFLAGS = -g -Wall
-EJS = p4_e1 #p4_e2 p4_e3
+EJS = p4_e1 p4_e2 p4_e3
 ##############################################################
 OBJECTSP4E1 = p4_e1.o bstree.o vertex.o
-OBJECTSP4E2 = p4_e2.o
-OBJECTSP4E3 = p4_e3.o
+OBJECTSP4E2 = p4_e2.o bstree.o search_queue.o
+OBJECTSP4E3 = p4_e3.o bstree.o search_queue.o file_utils.o
 ##############################################################
 
 all: $(EJS) clear
@@ -24,10 +24,10 @@ p4_e3: $(OBJECTSP4E3)
 p4_e1.o: p4_e1.c bstree.h vertex.h
 	$(CC) $(CFLAGS) -c p4_e1.c
 
-p4_e2.o: p4_e2.c
+p4_e2.o: p4_e2.c bstree.h search_queue.h
 	$(CC) $(CFLAGS) -c p4_e2.c
 
-p4_e3.o: p4_e3.c
+p4_e3.o: p4_e3.c bstree.h search_queue.h file_utils.h
 	$(CC) $(CFLAGS) -c p4_e3.c
 
 vertex.o: vertex.c vertex.h
@@ -35,6 +35,9 @@ vertex.o: vertex.c vertex.h
 
 bstree.o: bstree.c bstree.h
 	$(CC) $(CFLAGS) -c bstree.c
+
+search_queue.o: search_queue.c search_queue.h bstree.h
+	$(CC) $(CFLAGS) -c search_queue.c
 
 file_utils.o: file_utils.c
 	$(CC) $(CFLAGS) -c file_utils.c

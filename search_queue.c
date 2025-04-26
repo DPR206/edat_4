@@ -75,6 +75,7 @@ void *search_queue_pop(SearchQueue *q)
   }
   
   e = tree_find_min(q->data);
+  tree_remove(q->data, e);
 
   return e;
 }
@@ -103,6 +104,20 @@ void *search_queue_getBack(const SearchQueue *q)
   }
 
   e = tree_find_max(q->data);
+
+  return e;
+}
+
+void *search_queue_popBack(SearchQueue *q){
+  void *e = NULL;
+
+  if (!q)
+  {
+    return NULL;
+  }
+
+  e = tree_find_max(q->data);
+  tree_remove(q->data, e);
 
   return e;
 }
