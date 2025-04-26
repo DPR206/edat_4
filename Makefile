@@ -6,7 +6,7 @@ CFLAGS = -g -Wall
 EJS = p4_e1 p4_e2 p4_e3
 ##############################################################
 OBJECTSP4E1 = p4_e1.o bstree.o vertex.o
-OBJECTSP4E2 = p4_e2.o bstree.o search_queue.o
+OBJECTSP4E2 = p4_e2.o bstree.o search_queue.o file_utils.o
 OBJECTSP4E3 = p4_e3.o bstree.o search_queue.o file_utils.o
 ##############################################################
 
@@ -21,13 +21,13 @@ p4_e2: $(OBJECTSP4E2)
 p4_e3: $(OBJECTSP4E3)
 	$(CC) $(CFLAGS) -o p4_e3 $(OBJECTSP4E3)
 
-p4_e1.o: p4_e1.c bstree.h vertex.h
+p4_e1.o: p4_e1.c bstree.h vertex.h types.h
 	$(CC) $(CFLAGS) -c p4_e1.c
 
-p4_e2.o: p4_e2.c bstree.h search_queue.h
+p4_e2.o: p4_e2.c bstree.h search_queue.h file_utils.h types.h
 	$(CC) $(CFLAGS) -c p4_e2.c
 
-p4_e3.o: p4_e3.c bstree.h search_queue.h file_utils.h
+p4_e3.o: p4_e3.c bstree.h search_queue.h file_utils.h types.h
 	$(CC) $(CFLAGS) -c p4_e3.c
 
 vertex.o: vertex.c vertex.h

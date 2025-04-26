@@ -8,13 +8,13 @@
 
 #define MAX_STRING 1024
 
-int main(int argc, char argv[])
+int main(int argc, char *argv[])
 {
   SearchQueue *sq = NULL;
   FILE *fin = NULL, *fout = NULL;
   char *filename_in = NULL, *filename_out = NULL, *string = NULL, line[MAX_STRING];
 
-  if (argc != 2)
+  if (argc != 3)
   {
     fprintf(stdout, "The input format should be ./p4_e2 <input file> <output file>\n");
     return -1;

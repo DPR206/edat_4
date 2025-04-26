@@ -85,8 +85,13 @@ int main(int argc, char const *argv[]){
 
 void data_free(SearchQueue *sq){
     float *aux = NULL;
+    int i;
+    size_t size;
 
-    while(search_queue_isEmpty(sq) == FALSE){
+    if(!sq) return;
+
+    size = search_queue_size(sq);
+    for(i=0; i<size; i++){
         aux = search_queue_pop(sq);
         float_free(aux);
     }
