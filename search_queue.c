@@ -141,7 +141,7 @@ int search_queue_print(FILE *fp, const SearchQueue *q)
     return -1;
   }
 
-  
+  count += tree_inOrder(fp, q->data);
   
   return count;
 }
