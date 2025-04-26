@@ -209,11 +209,11 @@ int tree_postOrder(FILE *f, const BSTree *tree) {
 BSTNode *_bst_find_min_rec(BSTNode *pn) {
   if (!pn) return NULL;
 
-  if (!pn->left) {
-    return pn;
+  if (pn->left) {
+    return _bst_find_min_rec(pn->left);
   }
 
-  return _bst_find_min_rec(pn->left);
+  return pn;
 }
 
 BSTNode *_bst_find_max_rec(BSTNode *pn) {
@@ -278,12 +278,12 @@ BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
       return NULL;
     } else if (!pn->right){
 
-      ret_node = pn->right;
+      ret_node = pn->left;
       _bst_node_free(pn);
       return ret_node;
     } else if (!pn->left){
 
-      ret_node = pn->left;
+      ret_node = pn->right;
       _bst_node_free(pn);
       return ret_node;
     } else if (pn->right && pn->left) {
