@@ -12,7 +12,8 @@ int main(int argc, char *argv[])
 {
   SearchQueue *sq = NULL;
   FILE *fin = NULL, *fout = NULL;
-  char *filename_in = NULL, *filename_out = NULL, *string = NULL, line[MAX_STRING];
+  char *filename_in = NULL, *filename_out = NULL, line[MAX_STRING];
+  void *string = NULL;
 
   if (argc != 3)
   {
@@ -39,8 +40,9 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  while ((string = fgets(line, MAX_STRING, fin)) != NULL)
+  while (fgets(line, MAX_STRING, fin) != NULL)
   {
+    string = string_copy(line);
     search_queue_push(sq, string);
   }
 
