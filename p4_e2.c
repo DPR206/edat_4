@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
   SearchQueue *sq = NULL;
   FILE *fin = NULL, *fout = NULL;
   char *filename_in = NULL, /*filename_out = NULL,*/ line[MAX_STRING];
-  void *string = NULL, *n_string[MAX_STRING];
-  int i, total;
+  void *string = NULL/*, *n_string[MAX_STRING]*/;
+  /*int i, total;*/
 
   if (argc != 3)
   {
@@ -44,13 +44,13 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  i = 0;
+  /*i = 0;*/
 
   while (fgets(line, MAX_STRING, fin) != NULL)
   {
     string = string_copy(line);
-    n_string[i] = string;
-    i++;
+    /*n_string[i] = string;
+    i++;*/
     search_queue_push(sq, string);
   }
 
@@ -72,20 +72,20 @@ int main(int argc, char *argv[])
   if (search_queue_print(fout, sq) < 0)
   {
     fprintf(stderr, "The result could not be written on the output file\n");
-    for (total = 0; total <= i; total++)
+    /*for (total = 0; total <= i; total++)
     {
       free(n_string[i]);
-    }
+    }*/
     search_queue_free(sq);
     return -1;
   }
 
   fclose(fout);
-  for (total = 0; total <= i; total++)
+  /*for (total = 0; total <= i; total++)
   {
     free(n_string[i]);
   }
-  free(*n_string);
+  free(*n_string);*/
   search_queue_free(sq);
 
   return 0;
