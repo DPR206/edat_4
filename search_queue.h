@@ -123,4 +123,14 @@ size_t search_queue_size(const SearchQueue *q);
  *  */
 int search_queue_print(FILE *fp, const SearchQueue *q);
 
+/**
+ * @brief This functio checks is an element is already part of the SearchQueue
+ * 
+ * @param q A pointer to the SearchQueue to be checked
+ * @param element A pointer to the element that is to be searched
+ * 
+ * @return TRUE if the element already existed and FALSE if it did not
+ */
+Bool search_queue_contains(SearchQueue *q, void *element);
+
 #endif
