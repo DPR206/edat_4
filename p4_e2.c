@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
   {
     fprintf(stderr, "The output file could not be opened\n");
     search_queue_free(sq);
-    return -1;
+    exit(EXIT_FAILURE);
   }
 
   while (search_queue_isEmpty(sq) == FALSE)

@@ -95,6 +95,7 @@ int _bst_preOrder_rec(BSTNode *pn, FILE *pf, P_ele_print print_ele) {
   count += print_ele(pf, pn->info);
   count += _bst_preOrder_rec(pn->left, pf, print_ele);
   count += _bst_preOrder_rec(pn->right, pf, print_ele);
+  count += fprintf(pf, " ");
 
   return count;
 }
@@ -108,6 +109,7 @@ int _bst_inOrder_rec(BSTNode *pn, FILE *pf, P_ele_print print_ele) {
 
   count += _bst_inOrder_rec(pn->left, pf, print_ele);
   count += print_ele(pf, pn->info);
+  count += fprintf(pf, " ");
   count += _bst_inOrder_rec(pn->right, pf, print_ele);
 
   return count;
@@ -123,6 +125,7 @@ int _bst_postOrder_rec(BSTNode *pn, FILE *pf, P_ele_print print_ele) {
   count += _bst_postOrder_rec(pn->left, pf, print_ele);
   count += _bst_postOrder_rec(pn->right, pf, print_ele);
   count += print_ele(pf, pn->info);
+  count += fprintf(pf, " ");
 
   return count;
 }

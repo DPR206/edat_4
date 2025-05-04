@@ -26,6 +26,7 @@ int main(int argc, char const *argv[]){
 
     fin = fopen(argv[1], "r");
     if(!fin){
+        printf("Error opening the file %s", argv[1]);
         exit(EXIT_FAILURE);
     }
     fout = stdout;
@@ -54,11 +55,11 @@ int main(int argc, char const *argv[]){
 
     fprintf(fout, "Mean: ");
     fprintf(fout, "%.2f", mean);
-    fprintf(fout, "\n");
+    fprintf(fout, "\n\n");
 
     fprintf(fout, "Median: ");
     fprintf(fout, "%.2f", median);
-    fprintf(fout, "\n");
+    fprintf(fout, "\n\n");
 
     fprintf(fout, "Lowest grades: ");
     for (i=0; i<3; i++){
@@ -66,7 +67,7 @@ int main(int argc, char const *argv[]){
         fprintf(fout, "%.2f ", *aux);
         float_free(aux);
     }
-    fprintf(fout, "\n");
+    fprintf(fout, "\n\n");
 
     fprintf(fout, "Highest grades: ");
     for (i=0; i<3; i++){
@@ -74,7 +75,7 @@ int main(int argc, char const *argv[]){
         fprintf(fout, "%.2f ", *aux);
         float_free(aux);
     }
-    fprintf(fout, "\n");
+    fprintf(fout, "\n\n");
 
     fclose(fin);
     data_free(sq);
@@ -101,6 +102,7 @@ void get_median(SearchQueue *sq, float *median){
     int num, i;
     float *tmp = NULL;
     SearchQueue *aux = NULL;
+    Status status = OK;
 
     if(!sq) return;
 
@@ -109,21 +111,36 @@ void get_median(SearchQueue *sq, float *median){
 
     num = search_queue_size(sq);
 
-    for(i=0; i<num; i++){
-        tmp = search_queue_pop(sq);
-
-        if(num%2 == 0){
-            if(i == num/2 - 1){
-                *median = *tmp;
-            } else if (i == num/2){
-                *median += *tmp;
+    for (i = 0; i < num; i++) {
+        while (status == OK) {
+            tmp = search_queue_pop(sq);
+            if (!tmp) {
+                status = ERROR;
+                break;
             }
-        } else {
-            if(i == num /2){
-                *median = *tmp;
+            if (num % 2 == 0) {
+                if (i == num / 2 - 1) {
+                    *median = *tmp;
+                } else if (i == num / 2) {
+                    *median += *tmp;
+                }
+            } else {
+                if (i == num / 2) {
+                    *median = *tmp;
+                }
             }
+            status = search_queue_push(aux, tmp);
+            if (status == ERROR) {
+            }
+            break;
         }
-        search_queue_push(aux, tmp);
+    
+        if (status == ERROR) {
+            while ((tmp = search_queue_pop(aux)) != NULL) {
+                search_queue_push(sq, tmp);
+            }
+            return;
+        }
     }
     if(num%2 == 0){
         *median /= 2;
@@ -135,4 +152,5 @@ void get_median(SearchQueue *sq, float *median){
     }
 
     search_queue_free(aux);
+    return;
 }
