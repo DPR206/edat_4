@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
   SearchQueue *sq = NULL;
   FILE *fin = NULL, *fout = NULL;
-  char *filename_in = NULL, /*filename_out = NULL,*/ line[MAX_STRING];
+  char *filename_in = NULL, *filename_out = NULL, line[MAX_STRING];
   void *string = NULL;
 
   if (argc != 3)
@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
   }
 
   filename_in = argv[1];
-  /*filename_out = argv[2];*/
-  fout = stdout;
+  filename_out = argv[2];
 
   fin = fopen(filename_in, "r");
 
@@ -54,18 +53,14 @@ int main(int argc, char *argv[])
 
   fclose(fin);
 
-  /*fout = fopen(filename_out, "w");*/
+  fout = fopen(filename_out, "w");
 
-  /*if (!fout)
+  if (!fout)
   {
     fprintf(stderr, "The output file could not be opened\n");
-    for (total = 0; total <= i; total++)
-    {
-      free(n_string[i]);
-    }
     search_queue_free(sq);
     return -1;
-  }*/
+  }
 
   while (search_queue_isEmpty(sq) == FALSE)
   {
