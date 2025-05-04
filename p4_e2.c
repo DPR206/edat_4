@@ -13,13 +13,12 @@ int main(int argc, char *argv[])
   SearchQueue *sq = NULL;
   FILE *fin = NULL, *fout = NULL;
   char *filename_in = NULL, /*filename_out = NULL,*/ line[MAX_STRING];
-  void *string = NULL/*, *n_string[MAX_STRING]*/;
-  /*int i, total;*/
+  void *string = NULL;
 
   if (argc != 3)
   {
     fprintf(stdout, "The input format should be ./p4_e2 <input file> <output file>\n");
-    return -1;
+    exit(EXIT_FAILURE);
   }
 
   filename_in = argv[1];
@@ -31,7 +30,7 @@ int main(int argc, char *argv[])
   if (!fin)
   {
     fprintf(stderr, "The input file could not be opened\n");
-    return -1;
+    exit(EXIT_FAILURE);
   }
 
   sq = search_queue_new(string_print, string_cmp);
@@ -41,17 +40,16 @@ int main(int argc, char *argv[])
     fprintf(stderr, "The search queue could not be created\n");
     fclose(fin);
     search_queue_free(sq);
-    return -1;
+    exit(EXIT_FAILURE);
   }
-
-  /*i = 0;*/
 
   while (fgets(line, MAX_STRING, fin) != NULL)
   {
-    string = string_copy(line);
-    /*n_string[i] = string;
-    i++;*/
-    search_queue_push(sq, string);
+    if (search_queue_contains(sq, (void *)line) == FALSE)
+    {
+      string = string_copy(line);
+      search_queue_push(sq, string);
+    }
   }
 
   fclose(fin);
@@ -69,24 +67,15 @@ int main(int argc, char *argv[])
     return -1;
   }*/
 
-  if (search_queue_print(fout, sq) < 0)
+  while (search_queue_isEmpty(sq) == FALSE)
   {
-    fprintf(stderr, "The result could not be written on the output file\n");
-    /*for (total = 0; total <= i; total++)
-    {
-      free(n_string[i]);
-    }*/
-    search_queue_free(sq);
-    return -1;
+    string = search_queue_pop(sq);
+    string_print(fout, string);
+    string_free(string);
+    string = NULL;
   }
 
   fclose(fout);
-  /*for (total = 0; total <= i; total++)
-  {
-    free(n_string[i]);
-  }
-  free(*n_string);*/
   search_queue_free(sq);
-
-  return 0;
+  exit(EXIT_SUCCESS);
 }
