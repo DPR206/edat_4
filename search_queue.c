@@ -47,7 +47,7 @@ void search_queue_free(SearchQueue *q)
 
 Bool search_queue_isEmpty(const SearchQueue *q)
 {
-  if (!q || q->data)
+  if (!q || !q->data)
   {
     return TRUE;
   }
@@ -144,4 +144,14 @@ int search_queue_print(FILE *fp, const SearchQueue *q)
   count += tree_inOrder(fp, q->data);
   
   return count;
+}
+
+Bool search_queue_contains(SearchQueue *q, void *element)
+{
+  if (!q || !q->data || !element)
+  {
+    return TRUE;
+  }
+
+  return tree_contains(q->data, element);
 }
