@@ -1,10 +1,14 @@
 TAD BST:
 Al ejecutar el programa p4_e1.c se puede comprobar que los tiempos de creación y búsqueda varían mucho según si el programa se ejecuta en modo normal o en modo ordenado.
-1_¿Por qué es así?  
+1_¿Por qué es así?
+  En el modo normal se genera un árbol no balanceado, mientras que en el modo sorted se genera un árbol casi perfectamente balanceado. Este árbol
+  permite que las operaciones de inserción y búsqueda tengan una complejidad cercana a O(long n), lo que significa que la profundidad del árbol es
+  la mínima para la cantidad de nodos n, y por lo tanto se deben hacer menos pasos y menos comparaciones que en un árbol no balanceado.
 
-2_¿Hay alguna propiedad del árbol que permita explicar este comportamiento? 
+2_¿Hay alguna propiedad del árbol que permita explicar este comportamiento?
+  Sí, la altura del árbol es la propiedad que más influye en el rendimiento de las operaciones. Como el árbol tiene la mínima altura, tiene menos
+  pasos por operación y menos comparaciones, y por lo tanto el coste de las operaciones de inserción, búsqueda y eliminación es el mínimo.
 
- 
 
 TAD SQ 
 1_¿Qué diferencias y similitudes hay entre el TAD SQ y el TAD Cola de la práctica anterior? 
