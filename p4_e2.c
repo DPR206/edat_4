@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
   if (!fout)
   {
-    fprintf(stderr, "The output file could not be opened\n");
+    fprintf(stderr, "The output file could not be opened.\n");
     search_queue_free(sq);
     exit(EXIT_FAILURE);
   }
