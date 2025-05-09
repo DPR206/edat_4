@@ -1,6 +1,4 @@
 ##############################################################
-include Makefile_ext
-##############################################################
 CC = gcc
 CFLAGS = -g -Wall
 EJS = p4_e1 p4_e2 p4_e3
@@ -62,3 +60,6 @@ runv:
 	make run_e2 VALGRIND="valgrind --leak-check=full --track-origins=yes"
 	@echo "Running p4_e3 with valgrind"
 	make run_e3 VALGRIND="valgrind --leak-check=full --track-origins=yes"
+
+##############################################################
+include Makefile_ext
