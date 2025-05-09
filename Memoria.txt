@@ -1,26 +1,16 @@
 TAD BST:
 Al ejecutar el programa p4_e1.c se puede comprobar que los tiempos de creación y búsqueda varían mucho según si el programa se ejecuta en modo normal o en modo ordenado.
 1_¿Por qué es así?
-  En el modo normal se genera un árbol no balanceado, mientras que en el modo sorted se genera un árbol casi perfectamente balanceado. Este árbol
-  permite que las operaciones de inserción y búsqueda tengan una complejidad cercana a O(long n), lo que significa que la profundidad del árbol es
-  la mínima para la cantidad de nodos n, y por lo tanto se deben hacer menos pasos y menos comparaciones que en un árbol no balanceado.
+  En el modo normal se genera un árbol no balanceado, mientras que en el modo sorted se genera un árbol casi perfectamente balanceado. Este árbol permite que las operaciones de inserción y búsqueda tengan una complejidad cercana a O(long n), lo que significa que la profundidad del árbol es la mínima para la cantidad de nodos n, y por lo tanto se deben hacer menos pasos y menos comparaciones que en un árbol no balanceado.
 
 2_¿Hay alguna propiedad del árbol que permita explicar este comportamiento?
-  Sí, la altura del árbol es la propiedad que más influye en el rendimiento de las operaciones. Como el árbol tiene la mínima altura, tiene menos
-  pasos por operación y menos comparaciones, y por lo tanto el coste de las operaciones de inserción, búsqueda y eliminación es el mínimo.
+  Sí, la altura del árbol es la propiedad que más influye en el rendimiento de las operaciones. Como el árbol tiene la mínima altura, tiene menos pasos por operación y menos comparaciones, y por lo tanto el coste de las operaciones de inserción, búsqueda y eliminación es el mínimo.
 
 
 TAD SQ 
 1_¿Qué diferencias y similitudes hay entre el TAD SQ y el TAD Cola de la práctica anterior? 
-  El TAD SQ y el TAD Cola se diferencian en ciertos aspectos como su estructura, puesto que en SQ el TAD se compone de varias estructucturas anidadas
-  mientras que en el de Cola se compone únicamente de tres variables. Asimismo, la estructura de SQ incluye una función de comparación y otra de 
-  impresión de elementos, mientras que en la práctica anterior si necesitábamos de estas herrramientas teníamos que incluir un puntero a la función
-  en el argumento de las funciones a las que llamábamos. Existen diferencias a su vez en el coste de algunas funciones como free, puesto que en el caso
-  de SQ el coste total de la función es 𝒪(log n) mientras que en el TAD Cola esa misma operación tiene un coste de 𝒪(1). En cualquier caso, también aparecen
-  ciertas similitudes puesto que dentro de la estructura de ambas, cada nodo o elemento cuenta con una variable para guardar su información, un puntero al
-  elemento de la izquierda o al anterior, y otro puntero al elemento de su derecha o al posterior. 
+  El TAD SQ y el TAD Cola se diferencian en ciertos aspectos como su estructura, puesto que en SQ el TAD se compone de varias estructucturas anidadas mientras que en el de Cola se compone únicamente de tres variables. Asimismo, la estructura de SQ incluye una función de comparación y otra de impresión de elementos, mientras que en la práctica anterior si necesitábamos de estas herrramientas teníamos que incluir un puntero a la funciónen el argumento de las funciones a las que llamábamos. Existen diferencias a su vez en el coste de algunas funciones como free, puesto que en el caso de SQ el coste total de la función es 𝒪(log n) mientras que en el TAD Cola esa misma operación tiene un coste de 𝒪(1). En cualquier caso, también aparecen ciertas similitudes puesto que dentro de la estructura de ambas, cada nodo o elemento cuenta con una variable para guardar su información, un puntero al elemento de la izquierda o al anterior, y otro puntero al elemento de su derecha o al posterior. 
 
 
 2_¿Qué coste (aproximado) tiene la operación de extraer un elemento en el TAD SQ? ¿Sería posible hacer que esta operación fuera 𝒪(1)? 
-  Esta operación tiene un coste aproximado de log n, siendo n el numero de elementos dentro del árbol. No sería posible hacer que esta operación fuera 𝒪(1) 
-  sin hacer un cambio drástico aL TAD, puesto que cada vez que extraemos un elemento de la cola 
+ Esta operación tiene un coste aproximado de log n, siendo n el numero de elementos dentro del árbol. No sería posible hacer que esta operación fuera 𝒪(1) sin hacer un cambio drástico aL TAD, puesto que cada vez que extraemos un elemento de la cola tenemos que primero encontrar el mínimo y luego eliminarlo del árbol y volver a reorganizarlo en función de la posición del nodo que se haya eliminado. 
