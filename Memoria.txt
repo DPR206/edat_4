@@ -12,5 +12,15 @@ Al ejecutar el programa p4_e1.c se puede comprobar que los tiempos de creación 
 
 TAD SQ 
 1_¿Qué diferencias y similitudes hay entre el TAD SQ y el TAD Cola de la práctica anterior? 
+  El TAD SQ y el TAD Cola se diferencian en ciertos aspectos como su estructura, puesto que en SQ el TAD se compone de varias estructucturas anidadas
+  mientras que en el de Cola se compone únicamente de tres variables. Asimismo, la estructura de SQ incluye una función de comparación y otra de 
+  impresión de elementos, mientras que en la práctica anterior si necesitábamos de estas herrramientas teníamos que incluir un puntero a la función
+  en el argumento de las funciones a las que llamábamos. Existen diferencias a su vez en el coste de algunas funciones como free, puesto que en el caso
+  de SQ el coste total de la función es 𝒪(log n) mientras que en el TAD Cola esa misma operación tiene un coste de 𝒪(1). En cualquier caso, también aparecen
+  ciertas similitudes puesto que dentro de la estructura de ambas, cada nodo o elemento cuenta con una variable para guardar su información, un puntero al
+  elemento de la izquierda o al anterior, y otro puntero al elemento de su derecha o al posterior. 
+
 
 2_¿Qué coste (aproximado) tiene la operación de extraer un elemento en el TAD SQ? ¿Sería posible hacer que esta operación fuera 𝒪(1)? 
+  Esta operación tiene un coste aproximado de log n, siendo n el numero de elementos dentro del árbol. No sería posible hacer que esta operación fuera 𝒪(1) 
+  sin hacer un cambio drástico aL TAD, puesto que cada vez que extraemos un elemento de la cola 
